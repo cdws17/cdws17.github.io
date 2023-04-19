@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="/static/graph/graphy.css" />
+  <script type="text/javascript" src="static/graph/build.js"  charset="utf-8"></script>
+  <script type="text/javascript" src="static/graph/jquery.min.js"></script>
+  <script type="text/javascript" src="static/graph/calc.js"></script>
+  <script type="text/javascript" src="static/graph/jsgcalc.js"></script>
+  <script type="text/javascript" src="static/graph/graphy.js"></script>
+  <script type="text/javascript" src="static/graph/jquery.splitter.js"></script>
+</head>
+<body>
+<div>
+  <a href="../">Home</a><a> | </a>
+  <a href="../calculator">Calculator</a>
+
+</div>
+<div id="vsplitter">
+  <div id="wrapper">
+    <div id="toolbar">
+      <a href="../" id="home"><img src="/static/images/favicon.ico" title="Home"/></a>
+      <div id="tool_select">
+        <a href="javascript:void(0)" onclick="graph.setTool('pointer')" id="tool_select_pointer" class="toolbar_option toolbar_selected"> <img src="static/images/pointer.png" alt="Pointer" title="Pointer"/></a>
+        <a href="javascript:void(0)" onclick="graph.setTool('trace')" id="tool_select_trace" class="toolbar_option"> <img src="static/images/trace.png" alt="Trace" title="Trace"/></a>
+        <a href="javascript:void(0)" onclick="graph.setTool('vertex')" id="tool_select_vertex" class="toolbar_option"> <img src="static/images/minmax.png" alt="Local Minima/Maxima" title="Local Minima/Maxima"/></a>
+        <a href="javascript:void(0)" onclick="graph.setTool('root')" id="tool_select_root" class="toolbar_option"> <img src="static/images/root.png" alt="Root" title="Root"/></a>
+        <a href="javascript:void(0)" onclick="graph.setTool('intersect')" id="tool_select_intersect" class="toolbar_option"> <img src="static/images/intersect.png" alt="Intersect" title="Intersect"/></a>
+        <a href="javascript:void(0)" onclick="graph.setTool('derivative')" id="tool_select_derivative" class="toolbar_option"> <img src="static/images/derivative.png" alt="Derivative" title="Derivative"/></a>
+        <a href="javascript:void(0)" onclick="graph.setTool('zoombox')" id="tool_select_zoombox" class="toolbar_option"> <img src="static/images/zoombox.png" alt="ZoomBox" title="ZoomBox"/></a>
+        <a href="javascript:void(0)" onclick="graph.setTool('zoomin')" id="tool_select_zoomin" class="toolbar_option"> <img src="static/images/zoomin.png" alt="Zoom In" title="Zoom In"/></a>
+        <a href="javascript:void(0)" onclick="graph.setTool('zoomout')" id="tool_select_zoomout" class="toolbar_option"> <img src="static/images/zoomout.png" alt="Zoom Out" title="Zoom Out"/></a>
+      </div>
+    </div>
+    <div id="toolboxes">
+      <div class="toolbox" id="toolbox_zoombox">
+        <div class="toolbox_header">
+          <div class="toolbox_close"><a href="javascript: void(0)">close</a></div>
+        </div>
+        <div class="toolbox_main">
+          <a class="fancybutton" href="javascript: void(0);" onclick="graph.calc.resetZoom()">Reset View</a>
+        </div>
+      </div>
+    </div>
+    <div id="graph_wrapper">
+      <canvas id="graph"></canvas>
+    </div>
+  </div>
+  <div id="code">
+    <div id="edit">graph.add(function(x) { return x**2; });</div>
+  </div>
+</div>
+</body>
+</html>

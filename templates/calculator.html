@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1 user-scalable=no, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Calculator</title>
+	<link rel="icon" href="/static/images//favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href={{url_for("static", filename="calculator/calculator.css")}}>
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+
+</head>
+<body>
+	<nav class="navbar">
+		<!-- LOGO -->
+		<div class="logo" onclick="location.reload();">Coursework</div>
+		<!-- NAVIGATION MENU -->
+		<ul class="nav-links">
+			<!-- USING CHECKBOX HACK -->
+			<input type="checkbox" id="checkbox_toggle" />
+			<label for="checkbox_toggle" class="hamburger">&#9776;</label>
+			<!-- NAVIGATION MENUS -->
+			<div class="menu">
+				<li><a href="/">Home</a></li>
+				{% if current_user.is_authenticated %}
+					<li class="services">
+						<a href="../topics">Topic List</a>
+						<!-- DROPDOWN MENU -->
+						<ul class="dropdown">
+							<li><a href="../complex">Complex numbers</a></li>
+							<li><a href="../converter">Converter</a></li>
+							<li><a href="../geometry">Geometry</a>
+							<li><a href="../graph">Grapher</a></li>
+							<li><a href="../matrices">Matrices</a></li>
+							<li><a href="../mechanics">Mechanics</a></li>
+							<li><a href="../checker">Number checker</a></li>
+							<li><a href="../solver">Solver</a></li>
+						</ul>
+					</li>
+				{% endif %}
+					<li class="services">
+						<a>Learn Topics</a>
+						<!-- DROPDOWN MENU -->
+						<ul class="dropdown">
+							<li><a href="../learnComplex">Complex Numbers</a></li>
+							<li><a href="../learnSolver">Equation Solving</a></li>
+							<li><a href="../learnGeometry">Geometry</a></li>
+							<li><a href="../learnMatrices">Matrices</a></li>
+						</ul>
+					</li>
+					<li class="services">
+						<a>Extra</a>
+						<!-- DROPDOWN MENU -->
+						<ul class="dropdown">
+							<li><a href="../clock">Clock</a></li>
+							<li><a href="../random">Random Number Generator</a></li>
+							<li><a href="../tictactoe">Tic-Tac-Toe</a></li>
+						</ul>
+					</li>
+				{% if current_user.is_authenticated %}
+					<li><a href="../profile">Profile</a></li>
+					<li><a href="../logout">Logout</a></li>
+				{% endif %}
+				{% if not current_user.is_authenticated %}
+					<li><a href="../graph">Grapher</a></li>
+					<li><a href="../login">Login</a></li>
+					<li><a href="../signup">Sign up</a></li>
+				{% endif %}
+			</div>
+		</ul>
+	</nav>
+	<div class="container">
+
+		<h1><a style="text-decoration: none; color: white; font-weight: bold;" href="" onclick="location.reload();">Calculator</a></h1><h1></h1>
+		<div class="calculator">
+			<input type="text" name="screen" id="answer" readonly>
+			<table>
+				<tr>
+					<td><button>arcsin</button></td>
+					<td><button>arccos</button></td>
+					<td><button>arctan</button></td>
+					<td><button>floor</button></td>
+					<td><button>ceiling</button></td>
+				</tr>
+				<tr>
+					<td><button>sin</button></td>
+					<td><button>cos</button></td>
+					<td><button>tan</button></td>
+					<td><button>abs</button></td>
+					<td><button>round</button></td>
+				</tr>
+				<tr>
+					<td><button>π</button></td>
+					<td><button>e</button></td>
+					<td><button>ln</button></td>
+					<td><button>log10</button></td>
+					<td><button>log2</button></td>
+				</tr>
+				<tr>
+					<td><button>nCr</button></td>
+					<td><button>(</button></td>
+					<td><button>)</button></td>
+					<td><button>!</button></td>
+					<td><button>÷</button></td>
+				</tr>
+				<tr>
+					<td><button>√x</button></td>
+					<td><button>7</button></td>
+					<td><button>8</button></td>
+					<td><button>9</button></td>
+					<td><button>x</button></td>
+				</tr>
+				<tr>
+					<td><button>x<sup>2</sup></button></td>
+					<td><button>4</button></td>
+					<td><button>5</button></td>
+					<td><button>6</button></td>
+					<td><button>-</button></td>
+				</tr>
+				<tr>
+					<td><button>x<sup>y</sup></button></td>
+					<td><button>1</button></td>
+					<td><button>2</button></td>
+					<td><button>3</button></td>
+					<td><button>+</button></td>
+				</tr>
+				<tr>
+					<td><button>%</button></td>
+					<td><button>0</button></td>
+					<td><button style="font-weight: bold;">.</button></td>
+					<td><button style="background-color: #ff0000; font-weight: bold; color: #ecf0f1;">C</button></td>
+					<td><button style="background-color: #25db72; font-weight: bold; color: #ecf0f1;">=</button></td>
+				</tr>
+			</table>
+			<hr style="max-width: 50vw;">
+		</div>
+	</div>
+<!--    <div id="turn">-->
+<!--    PLEASE TURN YOUR DEVICE-->
+<!--	</div>-->
+</body>
+<script src="{{ url_for('static', filename='calculator/calculator.js') }}"></script>
+</html>
+

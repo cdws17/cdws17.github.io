@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1 user-scalable=no, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Clock</title>
+	<link rel="icon" href="/static/images//favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href={{url_for("static", filename="clock/clock.css")}}>
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<nav class="navbar">
+		<!-- LOGO -->
+		<div class="logo" onclick="location.reload();">Coursework</div>
+		<!-- NAVIGATION MENU -->
+		<ul class="nav-links">
+			<!-- USING CHECKBOX HACK -->
+			<input type="checkbox" id="checkbox_toggle" />
+			<label for="checkbox_toggle" class="hamburger">&#9776;</label>
+			<!-- NAVIGATION MENUS -->
+			<div class="menu">
+				<li><a href="/">Home</a></li>
+				{% if current_user.is_authenticated %}
+					<li class="services">
+						<a href="../topics">Topic List</a>
+						<!-- DROPDOWN MENU -->
+						<ul class="dropdown">
+							<li><a href="../calculator">Calculator</a></li>
+							<li><a href="../complex">Complex numbers</a></li>
+							<li><a href="../converter">Converter</a></li>
+							<li><a href="../geometry">Geometry</a>
+							<li><a href="../graph">Grapher</a></li>
+							<li><a href="../matrices">Matrices</a></li>
+							<li><a href="../mechanics">Mechanics</a></li>
+							<li><a href="../checker">Number checker</a></li>
+							<li><a href="../solver">Solver</a></li>
+						</ul>
+					</li>
+				{% endif %}
+					<li class="services">
+						<a>Learn Topics</a>
+						<!-- DROPDOWN MENU -->
+						<ul class="dropdown">
+							<li><a href="../learnComplex">Complex Numbers</a></li>
+							<li><a href="../learnSolver">Equation Solving</a></li>
+							<li><a href="../learnGeometry">Geometry</a></li>
+							<li><a href="../learnMatrices">Matrices</a></li>
+						</ul>
+					</li>
+					<li class="services">
+						<a>Extra</a>
+						<!-- DROPDOWN MENU -->
+						<ul class="dropdown">
+							<li><a href="../random">Random Number Generator</a></li>
+							<li><a href="../tictactoe">Tic-Tac-Toe</a></li>
+						</ul>
+					</li>
+				{% if current_user.is_authenticated %}
+					<li><a href="../profile">Profile</a></li>
+					<li><a href="../logout">Logout</a></li>
+				{% endif %}
+				{% if not current_user.is_authenticated %}
+					<li><a href="../graph">Grapher</a></li>
+					<li><a href="../login">Login</a></li>
+					<li><a href="../signup">Sign up</a></li>
+				{% endif %}
+			</div>
+		</ul>
+	</nav>
+	<div class="container">
+		<div class="clock">
+			<div class="hour hand" id="hour"></div>
+        	<div class="minute hand" id="minute"></div>
+        	<div class="seconds hand" id="seconds"></div>
+			<img src="/static/images/clock-template.svg"/>
+    	</div>
+		<div class="main">
+			<div class="wrapper" id="demo">
+				zcfd
+			</div>
+		</div>
+		<div id="date-info">
+            <h2 id="location"></h2>
+            <div id="weather"><img id="weather-icon"></div>
+			<div><span id="weather-temp"></span></div>
+			<div><span id="humid"></span></div>
+			<div><span id="cloud"></span></div>
+			<div><span id="speed"></span></div>
+        </div>
+	</div>
+</body>
+<script src="{{ url_for('static', filename='clock/clock.js') }}"></script>
+</html>
+

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1 user-scalable=no, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Matrices</title>
+	<link rel="icon" href="/static/images//favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href={{url_for("static", filename="matrices/matrices.css")}}>
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar">
+	<!-- LOGO -->
+	<div class="logo" onclick="location.reload();">Coursework</div>
+	<!-- NAVIGATION MENU -->
+	<ul class="nav-links">
+		<!-- USING CHECKBOX HACK -->
+		<input type="checkbox" id="checkbox_toggle" />
+		<label for="checkbox_toggle" class="hamburger">&#9776;</label>
+		<!-- NAVIGATION MENUS -->
+		<div class="menu">
+			<li><a href="/">Home</a></li>
+			{% if current_user.is_authenticated %}
+				<li class="services">
+					<a href="../topics">Topic List</a>
+					<!-- DROPDOWN MENU -->
+					<ul class="dropdown">
+							<li><a href="../calculator">Calculator</a></li>
+							<li><a href="../complex">Complex numbers</a></li>
+							<li><a href="../converter">Converter</a></li>
+							<li><a href="../geometry">Geometry</a></li>
+							<li><a href="../graph">Grapher</a></li>
+							<li><a href="../mechanics">Mechanics</a></li>
+							<li><a href="../checker">Number checker</a></li>
+							<li><a href="../solver">Solver</a></li>
+					</ul>
+				</li>
+			{% endif %}
+				<li class="services">
+					<a>Learn Topics</a>
+					<!-- DROPDOWN MENU -->
+					<ul class="dropdown">
+						<li><a href="../learnComplex">Complex Numbers</a></li>
+						<li><a href="../learnSolver">Equation Solving</a></li>
+						<li><a href="../learnGeometry">Geometry</a></li>
+						<li><a href="../learnMatrices">Matrices</a></li>
+					</ul>
+				</li>
+			{% if current_user.is_authenticated %}
+				<li><a href="../profile">Profile</a></li>
+				<li><a href="../logout">Logout</a></li>
+			{% endif %}
+			{% if not current_user.is_authenticated %}
+				<li><a href="../graph">Grapher</a></li>
+				<li><a href="../login">Login</a></li>
+				<li><a href="../signup">Sign up</a></li>
+			{% endif %}
+		</div>
+	</ul>
+</nav>
+	<div class="container">
+		<div class="calculator">
+			<table>
+				<tr>
+					<H2>Find the determinant and inverse of a 2x2 matrix:</H2>
+					<a href="#det2x2"><button>2x2</button></a>
+				</tr>
+				<tr>
+					<H2>Find the determinant and inverse of a 3x3 matrix:</H2>
+					<a href="#det3x3"><button>3x3</button></a>
+				</tr>
+				<tr>
+					<H2>Multiply 2x2 matrices:</H2>
+					<a href="#mult2x2"><button>2x2</button></a>
+				</tr>
+				<tr>
+					<H2>Multiply 3x3 matrices:</H2>
+					<a href="#mult3x3"><button>3x3</button></a>
+				</tr>
+			</table>
+			<hr style="max-width: 50vw;">
+		</div>
+
+		<section class="content-section" id="det2x2">
+			<H2>Find the determinant and inverse:</H2>
+			<form>
+				<H2>Enter the values of the matrix</H2>
+				<input type="text" id="2a">
+				<input type="text" id="2b"><H2></H2>
+				<input type="text" id="2c">
+				<input type="text" id="2d">
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="det2x2();" />
+			</form>
+		</section>
+
+		<section class="content-section" id=det3x3>
+			<H2>Find the determinant and inverse:</H2>
+			<form>
+				<H2>Enter the values of the matrix</H2>
+				<input type="text" id="3a">
+				<input type="text" id="3b">
+				<input type="text" id="3c"><H2></H2>
+				<input type="text" id="3d">
+				<input type="text" id="3e">
+				<input type="text" id="3f"><H2></H2>
+				<input type="text" id="3g">
+				<input type="text" id="3h">
+				<input type="text" id="3i">
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="det3x3();" />
+			</form>
+		</section>
+
+		<section class="content-section" id="mult2x2">
+			<H2>Multiply 2x2 matrices:</H2>
+			<form>
+				<H2>Enter the values of the first matrix</H2>
+				<input type="text" id="2am1">
+				<input type="text" id="2bm1"><H2></H2>
+				<input type="text" id="2cm1">
+				<input type="text" id="2dm1">
+				<H2>Enter the values of the second matrix</H2>
+				<input type="text" id="2am2">
+				<input type="text" id="2bm2"><H2></H2>
+				<input type="text" id="2cm2">
+				<input type="text" id="2dm2">
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="mult2x2();" />
+			</form>
+		</section>
+
+		<section class="content-section" id=mult3x3>
+			<H2>Multiply 3x3 matrices:</H2>
+			<form>
+				<H2>Enter the values of the first matrix</H2>
+				<input type="text" id="3am1">
+				<input type="text" id="3bm1">
+				<input type="text" id="3cm1"><H2></H2>
+				<input type="text" id="3dm1">
+				<input type="text" id="3em1">
+				<input type="text" id="3fm1"><H2></H2>
+				<input type="text" id="3gm1">
+				<input type="text" id="3hm1">
+				<input type="text" id="3im1">
+				<H2>Enter the values of the second matrix</H2>
+				<input type="text" id="3am2">
+				<input type="text" id="3bm2">
+				<input type="text" id="3cm2"><H2></H2>
+				<input type="text" id="3dm2">
+				<input type="text" id="3em2">
+				<input type="text" id="3fm2"><H2></H2>
+				<input type="text" id="3gm2">
+				<input type="text" id="3hm2">
+				<input type="text" id="3im2">
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="mult3x3();" />
+			</form>
+		</section>
+
+
+
+
+		<a href="../matrices" class="bottomCenterDiv">Top of page</a>
+	</div>
+</body>
+<script src="{{ url_for('static', filename='matrices/matrices.js') }}"></script>
+</html>
+

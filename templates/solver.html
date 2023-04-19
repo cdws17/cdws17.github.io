@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1 user-scalable=no, shrink-to-fit=no">
+	<title>Equation</title>
+	<link rel="icon" href="/static/images//favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href={{url_for("static", filename="solver/solver.css")}}>
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar">
+	<!-- LOGO -->
+	<div class="logo" onclick="location.reload();">Coursework</div>
+	<!-- NAVIGATION MENU -->
+	<ul class="nav-links">
+		<!-- USING CHECKBOX HACK -->
+		<input type="checkbox" id="checkbox_toggle" />
+		<label for="checkbox_toggle" class="hamburger">&#9776;</label>
+		<!-- NAVIGATION MENUS -->
+		<div class="menu">
+			<li><a href="/">Home</a></li>
+			{% if current_user.is_authenticated %}
+				<li class="services">
+					<a href="../topics">Topic List</a>
+					<!-- DROPDOWN MENU -->
+					<ul class="dropdown">
+							<li><a href="../calculator">Calculator</a></li>
+							<li><a href="../complex">Complex numbers</a></li>
+							<li><a href="../converter">Converter</a></li>
+							<li><a href="../geometry">Geometry</a></li>
+							<li><a href="../graph">Grapher</a></li>
+							<li><a href="../matrices">Matrices</a></li>
+							<li><a href="../mechanics">Mechanics</a></li>
+							<li><a href="../checker">Number checker</a></li>
+					</ul>
+				</li>
+			{% endif %}
+				<li class="services">
+					<a>Learn Topics</a>
+					<!-- DROPDOWN MENU -->
+					<ul class="dropdown">
+						<li><a href="../learnComplex">Complex Numbers</a></li>
+						<li><a href="../learnSolver">Equation Solving</a></li>
+						<li><a href="../learnGeometry">Geometry</a></li>
+						<li><a href="../learnMatrices">Matrices</a></li>
+					</ul>
+				</li>
+			{% if current_user.is_authenticated %}
+				<li><a href="../profile">Profile</a></li>
+				<li><a href="../logout">Logout</a></li>
+			{% endif %}
+			{% if not current_user.is_authenticated %}
+				<li><a href="../graph">Grapher</a></li>
+				<li><a href="../login">Login</a></li>
+				<li><a href="../signup">Sign up</a></li>
+			{% endif %}
+		</div>
+	</ul>
+</nav>
+	<div class="container">
+		<div class="calculator">
+			<table>
+				<tr>
+					<H2>Simultaneous Equations:</H2>
+					<a href="#2Var"><button>2 variables</button></a>
+					<a href="#3Var"><button>3 variables</button></a>
+				</tr>
+				<tr>
+					<H2>Polynomial Equations:</H2>
+					<a href="#1Pow"><button>x<sup>1</sup></button></a>
+					<a href="#2Pow"><button>x<sup>2</sup></button></a>
+					<a href="#3Pow"><button>x<sup>3</sup></button></a>
+				</tr>
+				<tr>
+					<H2>Calculus:</H2>
+					<a href="#int"><button>Integration</button></a>
+					<a href="#dif"><button>Differentiation</button></a>
+				</tr>
+			</table>
+			<hr style="max-width: 50vw;">
+		</div>
+		<section class="content-section" id="2Var">
+			<H1>2 Variables:</H1>
+			<form>
+				<H2>Equation 1:</H2>
+				<input type="text" id="2Var1"><a> * A + </a>
+				<input type="text" id="2Var2"><a> * B + </a>
+				<input type="text" id="2Var3"><a> = 0 </a>
+				<H2>Equation 2:</H2>
+				<input type="text" id="2Var4"><a> * A + </a>
+				<input type="text" id="2Var5"><a> * B + </a>
+				<input type="text" id="2Var6"><a> = 0 </a>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:10%;" type="submit" onclick="sim2Var();" />
+			</form>
+		</section>
+		<section class="content-section" id="3Var">
+			<H1>3 Variables:</H1>
+			<form>
+				<H2>Equation 1:</H2>
+				<input type="text" id="3Var1"><a> * A + </a>
+				<input type="text" id="3Var2"><a> * B + </a>
+				<input type="text" id="3Var3"><a> * C + </a>
+				<input type="text" id="3Var4"><a> = 0 </a>
+				<H2>Equation 2:</H2>
+				<input type="text" id="3Var5"><a> * A + </a>
+				<input type="text" id="3Var6"><a> * B + </a>
+				<input type="text" id="3Var7"><a> * C + </a>
+				<input type="text" id="3Var8"><a> = 0 </a>
+				<H2>Equation 3:</H2>
+				<input type="text" id="3Var9"><a> * A + </a>
+				<input type="text" id="3Var10"><a> * B + </a>
+				<input type="text" id="3Var11"><a> * C + </a>
+				<input type="text" id="3Var12"><a> = 0 </a>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:10%;" type="submit" onclick="sim3Var();" />
+			</form>
+		</section>
+		<section class="content-section" id="1Pow">
+			<H1>Linear solver:</H1>
+			<form>
+				<H2>Enter your linear equation:</H2>
+				<input type="text" id="1Pow1"><a> * x + </a>
+				<input type="text" id="1Pow2"><a> = 0 </a>
+				<H3>Press submit to view solution</H3>
+				<input style="position:center; width:10%;" type="submit" onclick="linear();" />
+			</form>
+		</section>
+		<section class="content-section" id="2Pow">
+			<H1>Quadratic solver:</H1>
+			<form>
+				<H2>Enter your quadratic:</H2>
+				<input type="text" id="2Pow1"><a> * x<sup>2</sup> + </a>
+				<input type="text" id="2Pow2"><a> * x + </a>
+				<input type="text" id="2Pow3"><a> = 0 </a>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:10%;" type="submit" onclick="quadratic();" />
+			</form>
+		</section>
+		<section class="content-section" id="3Pow">
+			<H1>Cubic solver:</H1>
+			<form>
+				<H2>Enter your cubic equation:</H2>
+				<input type="text" id="3Pow1"><a> * x<sup>3</sup> + </a>
+				<input type="text" id="3Pow2"><a> * x<sup>2</sup> + </a>
+				<input type="text" id="3Pow3"><a> * x + </a>
+				<input type="text" id="3Pow4"><a> = 0</a>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:10%;" type="submit" onclick="cubic();" />
+			</form>
+		</section>
+		<section class="content-section" id="int">
+			<H1>Integration:</H1>
+			<form>
+				<H2>Equation:</H2>
+				<input type="text" id="int1"><a> * x<sup>3</sup> + </a>
+				<input type="text" id="int2"><a> * x<sup>2</sup> + </a>
+				<input type="text" id="int3"><a> * x + </a>
+				<input type="text" id="int4">
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:10%;" type="submit" onclick="integrate();" /><h2></h2>
+				<H3>Integrate with bounds</H3>
+				<a>Lower bound:</a><input type="text" id="bound1">
+				<a>Upper bound:</a><input type="text" id="bound2">
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:10%;" type="submit" onclick="integrateBounds();" />
+			</form>
+		</section>
+		<section class="content-section" id="dif">
+			<H1>Differentiation:</H1>
+			<form>
+				<H2>Equation:</H2>
+				<input type="text" id="dif1"><a> * x<sup>3</sup> + </a>
+				<input type="text" id="dif2"><a> * x<sup>2</sup> + </a>
+				<input type="text" id="dif3"><a> * x + </a>
+				<input type="text" id="dif4">
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:10%;" type="submit" onclick="differentiate();" />
+			</form>
+		</section>
+		<a href="../solver" class="bottomCenterDiv">Top of page</a>
+	</div>
+</body>
+
+<script src="{{ url_for('static', filename='solver/solver.js') }}"></script>
+</html>

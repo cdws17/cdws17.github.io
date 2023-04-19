@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1 user-scalable=no, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Complex numbers</title>
+	<link rel="icon" href="/static/images//favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href={{url_for("static", filename="complex/complex.css")}}>
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar">
+	<!-- LOGO -->
+	<div class="logo" onclick="location.reload();">Coursework</div>
+	<!-- NAVIGATION MENU -->
+	<ul class="nav-links">
+		<!-- USING CHECKBOX HACK -->
+		<input type="checkbox" id="checkbox_toggle" />
+		<label for="checkbox_toggle" class="hamburger">&#9776;</label>
+		<!-- NAVIGATION MENUS -->
+		<div class="menu">
+			<li><a href="/">Home</a></li>
+			{% if current_user.is_authenticated %}
+				<li class="services">
+					<a href="../topics">Topic List</a>
+					<!-- DROPDOWN MENU -->
+					<ul class="dropdown">
+							<li><a href="../calculator">Calculator</a></li>
+							<li><a href="../converter">Converter</a></li>
+							<li><a href="../geometry">Geometry</a></li>
+							<li><a href="../graph">Grapher</a></li>
+							<li><a href="../matrices">Matrices</a></li>
+							<li><a href="../mechanics">Mechanics</a></li>
+							<li><a href="../checker">Number checker</a></li>
+							<li><a href="../solver">Solver</a></li>
+					</ul>
+				</li>
+			{% endif %}
+				<li class="services">
+					<a>Learn Topics</a>
+					<!-- DROPDOWN MENU -->
+					<ul class="dropdown">
+						<li><a href="../learnComplex">Complex Numbers</a></li>
+						<li><a href="../learnSolver">Equation Solving</a></li>
+						<li><a href="../learnGeometry">Geometry</a></li>
+						<li><a href="../learnMatrices">Matrices</a></li>
+					</ul>
+				</li>
+			{% if current_user.is_authenticated %}
+				<li><a href="../profile">Profile</a></li>
+				<li><a href="../logout">Logout</a></li>
+			{% endif %}
+			{% if not current_user.is_authenticated %}
+				<li><a href="../graph">Grapher</a></li>
+				<li><a href="../login">Login</a></li>
+				<li><a href="../signup">Sign up</a></li>
+			{% endif %}
+		</div>
+	</ul>
+</nav>
+	<div class="container">
+		<div class="calculator">
+			<table>
+				<tr>
+					<H2>Find i<sup>n</sup>:</H2>
+					<a href="#in"><button>i<sup>n</sup></button></a>
+				</tr>
+				<tr>
+					<h2>Convert from Z<sup>n</sup> = a + bi to re<sup>iθ</sup>:</h2>
+					<a href="#reix"><button>re<sup>iθ</sup></button></a>
+				</tr>
+				<tr>
+					<h2>Multiply two complex numbers:</h2>
+					<a href="#multiply"><button>Multiply</button></a>
+				</tr>
+				<tr>
+					<h2>Divide two complex numbers:</h2>
+					<a href="#divide"><button>Divide</button></a>
+				</tr>
+				<tr>
+					<h2>Add two complex numbers:</h2>
+					<a href="#add"><button>Add</button></a>
+				</tr>
+				<tr>
+					<h2>Find the modulus argument form of a complex number:</h2>
+					<a href="#modarg"><button>Modulus argument form</button></a>
+				</tr>
+			</table>
+			<hr style="max-width: 50vw;">
+		</div>
+
+		<section class="content-section" id="in">
+			<H2>Find i<sup>n</sup>:</H2>
+			<form>
+				<input type="text" id="nValue">
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="ipown();" />
+			</form>
+		</section>
+
+		<section class="content-section" id=reix>
+			<H2>Find Z<sup>n</sup> = re<sup>iθ</sup>:</H2>
+			<form>
+				<H2>Enter the value of n</H2>
+				<input type="text" id="nValue2">
+				<H2>Enter the value of a + bi</H2>
+				<input type="text" id="aValue"><a> + </a>
+				<input type="text" id="bValue"><a>*i</a>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="reix();" />
+			</form>
+		</section>
+
+		<section class="content-section" id=multiply>
+			<H2>(a+bi)(c+di):</H2>
+			<form>
+				<H2>Enter the value of a + bi</H2>
+				<input type="text" id="aValueM"><a> + </a>
+				<input type="text" id="bValueM"><a>*i</a>
+				<H2>Enter the value of c + di</H2>
+				<input type="text" id="cValueM"><a> + </a>
+				<input type="text" id="dValueM"><a>*i</a>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="multiply();" />
+			</form>
+		</section>
+
+		<section class="content-section" id=divide>
+			<H2>(a+bi)/(c+di):</H2>
+			<form>
+				<H2>Enter the value of a + bi</H2>
+				<input type="text" id="aValueD"><a> + </a>
+				<input type="text" id="bValueD"><a>*i</a>
+				<H2>Enter the value of c + di</H2>
+				<input type="text" id="cValueD"><a> + </a>
+				<input type="text" id="dValueD"><a>*i</a>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="divide();" />
+			</form>
+		</section>
+
+		<section class="content-section" id=add>
+			<H2>(a+bi) + (c+di):</H2>
+			<form>
+				<H2>Enter the value of a + bi</H2>
+				<input type="text" id="aValueA"><a> + </a>
+				<input type="text" id="bValueA"><a>*i</a>
+				<H2>Enter the value of c + di</H2>
+				<input type="text" id="cValueA"><a> + </a>
+				<input type="text" id="dValueA"><a>*i</a>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="add();" />
+			</form>
+		</section>
+
+		<section class="content-section" id=modarg>
+			<H2>Modulus argument form:</H2>
+			<form>
+				<H2>Enter the value of Z = x + yi</H2>
+				<a>Z = </a><input type="text" id="xValue"><a> + </a>
+				<input type="text" id="yValue"><a>*i</a>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="modarg();" />
+			</form>
+		</section>
+
+		<a href="../complex" class="bottomCenterDiv">Top of page</a>
+	</div>
+</body>
+<script src="{{ url_for('static', filename='complex/complex.js') }}"></script>
+</html>
+

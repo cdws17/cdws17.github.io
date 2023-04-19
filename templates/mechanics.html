@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1 user-scalable=no, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Mechanics</title>
+	<link rel="icon" href="/static/images//favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href={{url_for("static", filename="mechanics/mechanics.css")}}>
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar">
+	<!-- LOGO -->
+	<div class="logo" onclick="location.reload();">Coursework</div>
+	<!-- NAVIGATION MENU -->
+	<ul class="nav-links">
+		<!-- USING CHECKBOX HACK -->
+		<input type="checkbox" id="checkbox_toggle" />
+		<label for="checkbox_toggle" class="hamburger">&#9776;</label>
+		<!-- NAVIGATION MENUS -->
+		<div class="menu">
+			<li><a href="/">Home</a></li>
+			{% if current_user.is_authenticated %}
+				<li class="services">
+					<a href="../topics">Topic List</a>
+					<!-- DROPDOWN MENU -->
+					<ul class="dropdown">
+							<li><a href="../calculator">Calculator</a></li>
+							<li><a href="../complex">Complex numbers</a></li>
+							<li><a href="../converter">Converter</a></li>
+							<li><a href="../geometry">Geometry</a></li>
+							<li><a href="../graph">Grapher</a></li>
+							<li><a href="../matrices">Matrices</a></li>
+							<li><a href="../checker">Number checker</a></li>
+							<li><a href="../solver">Solver</a></li>
+					</ul>
+				</li>
+			{% endif %}
+				<li class="services">
+					<a>Learn Topics</a>
+					<!-- DROPDOWN MENU -->
+					<ul class="dropdown">
+						<li><a href="../learnComplex">Complex Numbers</a></li>
+						<li><a href="../learnSolver">Equation Solving</a></li>
+						<li><a href="../learnGeometry">Geometry</a></li>
+						<li><a href="../learnMatrices">Matrices</a></li>
+					</ul>
+				</li>
+			{% if current_user.is_authenticated %}
+				<li><a href="../profile">Profile</a></li>
+				<li><a href="../logout">Logout</a></li>
+			{% endif %}
+			{% if not current_user.is_authenticated %}
+				<li><a href="../graph">Grapher</a></li>
+				<li><a href="../login">Login</a></li>
+				<li><a href="../signup">Sign up</a></li>
+			{% endif %}
+		</div>
+	</ul>
+</nav>
+	<div class="container">
+		<div class="calculator">
+			<table>
+				<tr>
+					<a href="#suvat"><button>suvat</button></a>
+				</tr>
+				<tr>
+					<a href="#Fma"><button>F = ma</button></a>
+				</tr>
+				<tr>
+					<h2></h2><a href="#Impulse"><button>Impulse</button></a>
+				</tr>
+				<tr>
+					<a href="#Fmur"><button>F<sub>max</sub> = µR</button></a>
+				</tr>
+				<tr>
+					<h2></h2><a href="#Ek"><button>E<sub>k</sub> = 0.5mv<sup>2</sup></button></a>
+				</tr>
+				<tr>
+					<a href="#GPE"><button>GPE = mgh</button></a>
+				</tr>
+			</table>
+			<hr style="max-width: 50vw;">
+		</div>
+
+		<section class="content-section" id="suvat">
+			<form>
+				<H2>Enter three values</H2>
+				<a>S:</a><input type="text" id="sValueS"><h2></h2>
+				<a>U:</a><input type="text" id="uValueS"><h2></h2>
+				<a>V:</a><input type="text" id="vValueS"><h2></h2>
+				<a>A:</a><input type="text" id="aValueS"><h2></h2>
+				<a>T:</a><input type="text" id="tValueS"><h2></h2>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="suvat();" />
+			</form>
+		</section>
+
+		<section class="content-section" id="Fma">
+			<form>
+				<H2>Enter two values</H2>
+				<a>F:</a><input type="text" id="fValueF"><h2></h2>
+				<a>M:</a><input type="text" id="mValueF"><h2></h2>
+				<a>A:</a><input type="text" id="aValueF"><h2></h2>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="Fma();" />
+			</form>
+		</section>
+
+		<section class="content-section" id="Impulse">
+			<H2>Impulse = m(v-u) or F*t</H2>
+			<form>
+				<H2>Enter the values</H2>
+				<a>I:</a><input type="text" id="IValueI"><h2></h2>
+				<a>M:</a><input type="text" id="mValueI"><h2></h2>
+				<a>V:</a><input type="text" id="vValueI"><h2></h2>
+				<a>U:</a><input type="text" id="uValueI"><h2></h2>
+				<a>F:</a><input type="text" id="fValueI"><h2></h2>
+				<a>T:</a><input type="text" id="tValueI"><h2></h2>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="Impulse();" />
+			</form>
+		</section>
+
+		<section class="content-section" id="Fmur">
+			<form>
+				<H2>Enter two values</H2>
+				<a>F:</a><input type="text" id="fValueMu"><h2></h2>
+				<a>µ:</a><input type="text" id=zmuValueMu"><h2></h2>
+				<a>R:</a><input type="text" id="rValueMu"><h2></h2>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="fmur();" />
+			</form>
+		</section>
+
+		<section class="content-section" id="Ek">
+			<form>
+				<H2>Enter two values</H2>
+				<a>E<sub>k</sub>:</a><input type="text" id="kezValueEk"><h2></h2>
+				<a>M:</a><input type="text" id="mValueEk"><h2></h2>
+				<a>V:</a><input type="text" id="vValueEk"><h2></h2>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="Ek();" />
+			</form>
+		</section>
+
+		<section class="content-section" id="GPE">
+			<form>
+				<H2>Enter two values</H2>
+				<a>GPE:</a><input type="text" id="gpeValueGPE"><h2></h2>
+				<a>M:</a><input type="text" id="mValueGPE"><h2></h2>
+				<a>H:</a><input type="text" id="hValueGPE"><h2></h2>
+				<H3>Press submit to view solutions</H3>
+				<input style="position:center; width:50%;" type="submit" onclick="GPE();" />
+			</form>
+		</section>
+
+		<a href="mechanics" class="bottomCenterDiv">Top of page</a>
+	</div>
+</body>
+<script src="{{ url_for('static', filename='mechanics/mechanics.js') }}"></script>
+</html>
+

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <H1 class="title">All available topics and features:</H1>
+    <ul>
+        <li><a href="{{ url_for('main.calculator') }}">Calculator</a></li>
+        <li><a href="{{ url_for('main.graph') }}">Grapher</a></li>
+        {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('main.complex') }}">Complex numbers</a></li>
+            <li><a href="{{ url_for('main.converter') }}">Converter</a></li>
+            <li><a href="{{ url_for('main.geometry') }}">Geometry</a></li>
+            <li><a href="{{ url_for('main.matrices') }}">Matrices</a></li>
+            <li><a href="{{ url_for('main.mechanics') }}">Mechanics</a></li>
+            <li><a href="{{ url_for('main.checker') }}">Number checker</a></li>
+            <li><a href="{{ url_for('main.solver') }}">Solver</a></li>
+        {% endif %}
+    </ul>
+{% endblock %}
